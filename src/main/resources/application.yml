@@ -1,0 +1,38 @@
+spring:
+  kafka:
+    # تنظیمات سرور کافکا
+    bootstrap-servers: localhost:9092
+
+    # تنظیمات Consumer
+    consumer:
+#      group-id: group-${random.value}
+      group-id: my-test-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties:
+        max.poll.interval.ms: 300000  # مثال برای تنظیمات اضافی
+
+    # تنظیمات Producer (اختیاری)
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+# تنظیمات لاگینگ (مطابق نیاز شما)
+logging:
+  level:
+    root: INFO
+    org:
+      apache:
+        kafka: WARN
+      springframework:
+        kafka: DEBUG  # برای دیباگ بهتر
+
+
+kafka:
+  cluster:
+    bootstrap-server: localhost:9092      # <-- دقیقا مطابق prefix و نام فیلد در KafkaClusterConfiguration
+  consumer:
+    group-id-prefix: my-test-group-       # اگر می‌خواهید از این کلاس ConsumerConfiguration استفاده کنید
+    max-failure: 3
+

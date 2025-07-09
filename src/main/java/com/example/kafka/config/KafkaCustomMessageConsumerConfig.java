@@ -42,6 +42,8 @@ public class KafkaCustomMessageConsumerConfig {
     @Autowired
     ConsumerConfiguration consumerConfiguration;
 
+
+
     @Bean(name = "consumerFactory")
     public ConsumerFactory<Object, Object> consumerFactory() {
         Map<String, Object> props = new HashMap<>();
